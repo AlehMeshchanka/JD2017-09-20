@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+    <div class="margin-bottom-100"></div>
+    <div>&nbsp;</div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
             <p>Message server: ${message}</p>

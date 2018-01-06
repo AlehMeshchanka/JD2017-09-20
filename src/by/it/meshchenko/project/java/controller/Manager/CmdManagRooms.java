@@ -51,6 +51,11 @@ public class CmdManagRooms extends AbstractAction {
                     tempLeaseRoom.setUserId(user.getId());
                     tempLeaseRoom.setRoomId(tempForm.getId());
 
+                    if (req.getParameter("create") != null) {
+                        dao.room.create(tempForm);
+                        tempLeaseRoom.setRoomId(tempForm.getId());
+                        dao.leaseRoom.create(tempLeaseRoom);
+                    }
                     if (req.getParameter("update") != null) {
                         dao.room.update(tempForm);
                         dao.leaseRoom.update(tempLeaseRoom);
