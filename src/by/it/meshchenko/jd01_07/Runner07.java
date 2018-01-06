@@ -6,9 +6,85 @@ import java.io.RandomAccessFile;
 public class Runner07 {
     public static void main(String[] args) {
 
-        int i3 = 1000;
-        int i4 = 1000;
-        if(i4==i3) System.out.println("true");
+        //Целочисленные пулы Java составляют от -128 до 127.
+        int i1 = 128;
+        int i2 = 128;
+        Integer i3 = 128;
+        Integer i4 = 128;
+        Integer i5 = new Integer(128);
+        Integer i6 = new Integer(128);
+
+        System.out.println("1. int == int");
+        if(i1==i2) System.out.println("true");
+        else System.out.println("false");
+
+        System.out.println("2. int == Integer");
+        if(i1==i3) System.out.println("true");
+        else System.out.println("false");
+
+        System.out.println("3. int == new Integer()");
+        if(i1==i5) System.out.println("true");
+        else System.out.println("false");
+
+        System.out.println("4. Integer == Integer");
+        if(i3==i4) System.out.println("true");
+        else System.out.println("false");
+
+        System.out.println("5. Integer == new Integer()");
+        if(i3==i5) System.out.println("true");
+        else System.out.println("false");
+
+        System.out.println("6. new Integer() == new Integer()");
+        if(i5==i6) System.out.println("true");
+        else System.out.println("false");
+
+
+        String str1 = "1000";
+        String str2 = "1000";
+        String str3 = new String("1000");
+        String str4 = new String("1000");
+
+        System.out.println("\n7. String '' == String ''");
+        if(str1==str2) System.out.println("true");
+        else System.out.println("false");
+
+        System.out.println("8. String '' == new String()");
+        if(str1==str3) System.out.println("true");
+        else System.out.println("false");
+
+        System.out.println("9. new String() ==  new String()");
+        if(str3==str4) System.out.println("true");
+        else System.out.println("false");
+
+
+        boolean b1 = true;
+        boolean b2 = true;
+        Boolean b3 = true;
+        Boolean b4 = true;
+        Boolean b5 = new Boolean(true);
+        Boolean b6 = new Boolean(true);
+        System.out.println("\n10. boolean ==  boolean");
+        if(b1==b2) System.out.println("true");
+        else System.out.println("false");
+
+        System.out.println("11. boolean ==  Boolean");
+        if(b1==b3) System.out.println("true");
+        else System.out.println("false");
+
+        System.out.println("12. boolean ==  new Boolean()");
+        if(b1==b5) System.out.println("true");
+        else System.out.println("false");
+
+        System.out.println("13. Boolean ==  Boolean");
+        if(b3==b4) System.out.println("true");
+        else System.out.println("false");
+
+        System.out.println("13. Boolean ==  new Boolean()");
+        if(b3==b5) System.out.println("true");
+        else System.out.println("false");
+
+        System.out.println("14. new Boolean() ==  new Boolean()");
+        if(b5==b6) System.out.println("true");
         else System.out.println("false");
     }
 }
