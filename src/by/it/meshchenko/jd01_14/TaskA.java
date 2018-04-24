@@ -24,7 +24,7 @@ public class TaskA {
         }
 
         //Читаем из файла
-        try(DataInputStream inp = new DataInputStream(
+        try (DataInputStream inp = new DataInputStream(
                 new BufferedInputStream(new FileInputStream(fileName)))){
 
             double sum = 0;

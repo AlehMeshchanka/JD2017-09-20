@@ -3,7 +3,7 @@
     <div>&nbsp;</div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
-            <p>Message server: ${message}</p>
+            <p>Message server: ${message}</p>come}
             <p>Error server: <b><span style="color: red; ">${error}</span></b></p>
             <p class="text-center">&copy; Copyright 2017 by Aleh Meshchanka</p>
         </div>
