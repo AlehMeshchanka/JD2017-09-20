@@ -8,12 +8,92 @@ public class MyMath {
 
         System.out.println("myPow = " + myPow(12, 10));
 
-        System.out.println("m = " + (999 * 333));
-        System.out.println("multiplyTwoString = " + multiplyTwoString("999", "333"));
+        System.out.println("m = " + (999 * 3));
+        System.out.println("multiplyTwoString = " + multiplyTwoString("999", "3"));
         System.out.println("***");
-        System.out.println("add = " + (999995559 + 3338899));
-        System.out.println("addTwoString = " + addTwoString("999995559", "3338899"));
+        System.out.println("add = " + (999 + 3));
+        System.out.println("addTwoString = " + addTwoString("999", "3"));
 
+        System.out.println("(88 - 99) = " + (88 - 99));
+        System.out.println("subTwoString (88 - 99) = " + subTwoString("88", "99"));
+        System.out.println("(122 - 99) = " + (122 - 99));
+        System.out.println("subTwoString (122 - 99) = " + subTwoString("122", "99"));
+        System.out.println("(99 - 3) = " + (99 - 3));
+        System.out.println("subTwoString (99 - 3)  = " + subTwoString("99", "3"));
+        System.out.println("(9 - 33) = " + (9 - 33));
+        System.out.println("subTwoString (9 - 33) = " + subTwoString("9", "33"));
+        System.out.println("(999 - 1000) = " + (999 - 1000));
+        System.out.println("subTwoString (1000 - 1000) = " + subTwoString("1000", "1000"));
+
+        System.out.println("myTwoFactorial 5! = " + myTwoFactorial("5"));
+        System.out.println("myTwoFactorial 0! = " + myTwoFactorial("0"));
+        System.out.println("myTwoFactorial 1! = " + myTwoFactorial("1"));
+        System.out.println("myTwoFactorial 2! = " + myTwoFactorial("2"));
+        System.out.println("myTwoFactorial -2! = " + myTwoFactorial("-2"));
+        System.out.println("myTwoFactorial 6! = " + myTwoFactorial("6"));
+
+       //System.out.println("100!*100!! = "
+       //        + multiplyTwoString(myFactorial("100"),myTwoFactorial("100")));
+        //45!*63!*28!*55!!
+        System.out.println("45!*63!*28!*55!! = "
+                + multiplyTwoString(
+                    multiplyTwoString(
+                        multiplyTwoString(
+                                myFactorial("45"),myFactorial("63"))
+                        ,myFactorial("28"))
+                    ,myTwoFactorial("55")));
+    }
+
+    private static String myFactorial(String num) {
+        String result = num;
+        String strNum1 = num;
+        String strNum2;
+
+        if(!num.isEmpty() && num.trim().equalsIgnoreCase("0")) {
+            return "1";
+        }
+        else if(num.trim().substring(0,1).equalsIgnoreCase("-")) {
+            return "MINUS";
+        }
+        else if(num.equalsIgnoreCase("1")) {
+            return "1";
+        }
+        else {
+             do {
+                 strNum1 = subTwoString(strNum1, "1");
+                 result = multiplyTwoString(result, strNum1);
+            } while (!strNum1.equalsIgnoreCase("1") );
+        }
+
+        return result;
+    }
+
+    private static String myTwoFactorial(String num) {
+        String result = num;
+        String strNum1 = num;
+        String strNum2;
+
+        if(!num.isEmpty() && num.trim().equalsIgnoreCase("0")) {
+            return "1";
+        }
+        else if(num.trim().substring(0,1).equalsIgnoreCase("-")) {
+            return "MINUS";
+        }
+        else if(num.equalsIgnoreCase("1")) {
+            return "1";
+        }
+        else if(num.equalsIgnoreCase("2")) {
+            return "2";
+        }
+        else {
+            do {
+                strNum1 = subTwoString(strNum1, "2");
+                result = multiplyTwoString(result, strNum1);
+            } while (!(strNum1.equalsIgnoreCase("1")
+                    || strNum1.equalsIgnoreCase("2")) );
+        }
+
+        return result;
     }
 
     private static String myPow(int num, int pow) {
@@ -126,6 +206,68 @@ public class MyMath {
             }
 
             return byteArrayToString(remember);
+
+        } else if (s1.isEmpty() && !s2.isEmpty()) {
+            return s2;
+        } else {
+            return null;
+        }
+    }
+
+    private static String subTwoString(String s1, String s2) {
+        if (!s1.isEmpty() && !s2.isEmpty()) {
+            byte[] first = stringReverseToByteArray(s1);
+            byte[] second = stringReverseToByteArray(s2);
+
+            if(first == null || second == null) return null;
+
+            int maxSize = 0;
+            String znak = "";
+
+            if(first.length < second.length) {
+                first = stringReverseToByteArray(s2);
+                second = stringReverseToByteArray(s1);
+                znak = "-";
+            }
+            else if(first.length == second.length) {
+                for (int i = first.length - 1; i > 0; i--) {
+                    if (first[i] > second[i]) {
+                        break;
+                    }
+                    else if (first[i] == second[i]) {
+                        continue;
+                    }
+                    else {
+                        first = stringReverseToByteArray(s2);
+                        second = stringReverseToByteArray(s1);
+                        znak = "-";
+                    }
+                }
+            }
+
+            maxSize = first.length;
+
+            byte[] remember = new byte[maxSize + 1];
+            int sub = 0;
+
+            for (int i = 0; i < maxSize; i++) {
+                if (i < first.length) {
+                    sub = first[i];
+                }
+                if (i < second.length) {
+                    sub = sub - second[i];
+                }
+                sub = sub - remember[i];
+                if (sub < 0) {
+                    remember[i] = (byte) (sub + 10);
+                    remember[i + 1] = 1;
+                } else {
+                    remember[i] = (byte) sub;
+                }
+                sub = 0;
+            }
+
+            return znak + byteArrayToString(remember);
 
         } else if (s1.isEmpty() && !s2.isEmpty()) {
             return s2;
